@@ -4,6 +4,7 @@
     "module": "commonjs",
     "sourceMap": true,
     "outDir": "./dist",
+    "rootDir": "./src",
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
@@ -12,5 +13,6 @@
     "noImplicitAny": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true
-  }
+  },
+  "include": ["src"]
 }

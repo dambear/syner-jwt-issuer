@@ -20,10 +20,9 @@ app.use((req, res, next) => {
 // Use the user routes
 app.use("/api/auth", auth);
 
-
-const PORT = 8080;
-const server = app.listen(PORT, () =>
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
   console.log(`
 🚀 Server ready at: http://localhost:${PORT}
 ⭐️ See sample requests: http://pris.ly/e/ts/rest-express#3-using-the-rest-api`)
-);
+});
