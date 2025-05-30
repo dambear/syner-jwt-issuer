@@ -3,9 +3,9 @@ import { accessTokenService, refreshTokenService } from "./auth.service";
 
 export const accessToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { organization_code, user_id } = req.body;
-    const { accessToken, refreshToken } = await accessTokenService(organization_code, user_id);
-    res.status(200).json({ accessToken, refreshToken });
+    const { jwt_secret, organization_code, user_id } = req.body;
+    const { access_token, refresh_token } = await accessTokenService(jwt_secret, organization_code, user_id);
+    res.status(200).json({ access_token, refresh_token });
   } catch (error) {
     next(error);
   }
@@ -13,9 +13,9 @@ export const accessToken = async (req: Request, res: Response, next: NextFunctio
 
 export const refreshToken = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { refresh_token } = req.body;
-    const { accessToken, refreshToken } = await refreshTokenService(refresh_token);
-    res.status(200).json({ accessToken, refreshToken });
+    const { jwt_secret, refresh_token } = req.body;
+    const { access_token } = await refreshTokenService(jwt_secret, refresh_token);
+    res.status(200).json({ access_token });
   } catch (error) {
     next(error);
   }
